@@ -11,7 +11,7 @@ def on_message(message, data):
 TARGET_APP = 'com.hoge.app'
 
 jscode = """
-Module.enumerateExports("libcocos2dcpp.so", {                
+Module.enumerateExports("libhoge.so", {                
     onMatch: function(e) {                            
         if(e.type == 'function' && e.name.indexOf('aes_initializeDecrypt') > -1){
             console.log("name of function = " + e.name);
