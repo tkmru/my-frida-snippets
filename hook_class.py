@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import frida, sys
 
 def on_message(message, data):
@@ -21,9 +20,16 @@ Java.performNow(function() {
     }, onComplete: function() {
       console.log("[*] Completed");
     }
+    onEnter: function (log, args, state) {
+      for(var i=0; i<10; i++) {
+        log("Func args[" + i + "]" + Memory.readUtf8String(args[i]));
+      }
+    },
+
   });
 });
 """
+
 script = process.create_script(jscode)
 script.on('message', on_message)
 print('[*] Running')

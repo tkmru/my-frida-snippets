@@ -13,7 +13,7 @@ if len(sys.argv) < 3:
     print('Usage: %s <begin address> <end address>' % sys.argv[0])
     sys.exit(1)
 
-
+TARGET_APP = 'com.hoge.app'
 begin_addr = int(sys.argv[1], 16)
 end_addr = int(sys.argv[2], 16)
 length = end_addr - begin_addr
@@ -29,7 +29,6 @@ console.log(hexdump(buf, {
 }));
 """
 
-TARGET_APP = 'com.hoge.app'
 process = frida.get_usb_device().attach(TARGET_APP)
 script = process.create_script(jscode)
 script.on('message', on_message)

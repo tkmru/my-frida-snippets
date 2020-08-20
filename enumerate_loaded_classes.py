@@ -8,6 +8,8 @@ def on_message(message, data):
     else:
         print(message)
 
+TARGET_APP = 'com.hoge.app'
+
 jscode = """
 Java.perform(function() {
   Java.enumerateLoadedClasses({
@@ -21,7 +23,6 @@ Java.perform(function() {
 });
 """
 
-TARGET_APP = 'com.hoge.app'
 process = frida.get_usb_device().attach(TARGET_APP)
 script = process.create_script(jscode)
 script.on('message', on_message)

@@ -30,7 +30,7 @@ console.log(hexdump(buf, {
 }));
 """
 
-TARGET_APP = 'com.hoge.app'
+TARGET_APP = ''
 process = frida.get_usb_device().attach(TARGET_APP)
 script = process.create_script(jscode)
 script.on('message', on_message)
